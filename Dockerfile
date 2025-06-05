@@ -4,7 +4,12 @@ FROM php:8.3-fpm AS builder
 # Install build dependencies and compile PHP extensions
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libpng-dev libjpeg-dev libldap2-dev libcurl4-openssl-dev libxml2-dev \
- && docker-php-ext-install mysqli gd ldap curl xml \
+ && docker-php-ext-configure gd \
+        --with-freetype \
+        --with-jpeg \
+        --with-webp \
+        --with-xpm \
+ && docker-php-ext-install mysqli gd ldap curl xml intl exif bz2 zip opcache \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # ----- Stage 2: Final Image -----
