@@ -3,7 +3,7 @@ FROM php:8.3-fpm AS builder
 
 # Install build dependencies and compile PHP extensions
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libpng-dev libjpeg-dev libldap2-dev libcurl4-openssl-dev libxml2-dev \
+    libpng-dev libjpeg-dev libldap2-dev libcurl4-openssl-dev libxml2-dev libfreetype6-dev \
  && docker-php-ext-configure gd \
         --with-freetype \
         --with-jpeg \
