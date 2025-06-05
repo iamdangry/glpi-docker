@@ -7,7 +7,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  && docker-php-ext-configure gd \
         --with-freetype \
         --with-jpeg \
-        --with-xpm \
  && docker-php-ext-install mysqli gd ldap curl xml intl exif bz2 zip opcache \
  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
