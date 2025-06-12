@@ -1,7 +1,7 @@
 FROM php:8.3-fpm
 
-# Install runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl \
     libpng-dev libjpeg-dev libldap2-dev libcurl4-openssl-dev \
     libxml2-dev libfreetype6-dev libbz2-dev libzip-dev zlib1g-dev pkg-config \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
@@ -15,11 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         exif \
         bz2 \
         zip \
-        opcache \
-    && apt-mark auto \* \
-    && apt-get purge -y --auto-remove \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+        opcache
 
 # Download and extract GLPI
 RUN curl -L -o /tmp/glpi.tar.gz https://github.com/glpi-project/glpi/releases/download/10.0.18/glpi-10.0.18.tgz && \
